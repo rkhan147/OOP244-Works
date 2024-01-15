@@ -1,16 +1,3 @@
-/*
-
-Name: Ridwan Khan
-Email: rkhan147@myseneca.ca
-ID: 162409213
-Date: January 13, 2024
-
-I have done all the coding by myself and only copied the
-code that my professor provided to complete my workshops and
-assignments.
-
-*/
-
 /***********************************************************************
 OOP244 Workshop # p2: 
 Version 1.0
@@ -34,8 +21,6 @@ namespace seneca {
       char surname[31];
       int mark;
    };
-
-   bool printReport(const char* filename);
 
 }
 #endif // !SENECA_STMARK_H

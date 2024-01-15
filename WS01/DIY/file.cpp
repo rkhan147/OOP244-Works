@@ -1,16 +1,3 @@
-/*
-
-Name: Ridwan Khan
-Email: rkhan147@myseneca.ca
-ID: 162409213
-Date: January 13, 2024
-
-I have done all the coding by myself and only copied the
-code that my professor provided to complete my workshops and
-assignments.
-
-*/
-
 #define _CRT_SECURE_NO_WARNINGS
 #include "file.h"
 #include "StMark.h"
