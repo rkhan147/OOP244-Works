@@ -32,6 +32,7 @@ namespace seneca {
             getSamples(s, samples, size);
             printGraph(samples, 10, "Students' mark distribution");
             printStudentRecords(s, size);
+            std::cout << "----------------------------------------" << std::endl;
             closeFile();
 
             return true;
