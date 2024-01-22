@@ -1,3 +1,16 @@
+/*
+
+Name: Ridwan Khan
+Email: rkhan147@myseneca.ca
+ID: 162409213
+Date: January 21, 2024
+
+I have done all the coding by myself and only copied the
+code that my professor provided to complete my workshops and
+assignments.
+
+*/
+
 /***********************************************************************
 // Workshop 1 # p2: tester program
 //
