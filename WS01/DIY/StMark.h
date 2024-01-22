@@ -22,7 +22,19 @@ namespace seneca {
       int mark;
    };
 
+   /// <summary>
+   /// Tries to open the students' mark data file. 
+   /// If successful it will print a report based on the 
+   /// date in the file.
+   /// </summary>
+   /// <param name="filename">, holds the data file name</param>
+   /// <returns>True if the date files is opened succesfully, 
+   /// otherwise returns false</returns>
+   bool printReport(const char* filename);
+   void bubbleSort(struct StMark* s, int size);
+   void swap(StMark& a, StMark& b);
+   void getSamples(struct StMark* s, int samples[], int size);
+   void printStudentRecords(struct StMark* s, int size);
+
 }
 #endif // !SENECA_STMARK_H
-
-

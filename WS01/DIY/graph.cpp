@@ -12,6 +12,7 @@ assignments.
 */
 
 #include <iostream>
+#include <iomanip>
 #include "io.h"
 #include "graph.h"
 
@@ -60,11 +61,13 @@ namespace seneca {
     // prints a graph comparing the sample values visually 
     void printGraph(int samples[], int noOfSamples, const char* label) {
         int max = findMax(samples, noOfSamples);
-        labelLine(GRAPH_WIDTH + 10, label);
+        int markDis = 100;
+        labelLine(GRAPH_WIDTH + 14, label);
         for (int i = 0; i < noOfSamples; i++) {
+            cout << std::left << std::setw(4) << markDis;
+            markDis -= 10;
             printBar(samples[i], max);
         }
-        line(GRAPH_WIDTH + 10);
+        line(GRAPH_WIDTH + 14);
     }
-
 }
