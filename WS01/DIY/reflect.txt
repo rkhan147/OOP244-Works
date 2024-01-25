@@ -1,0 +1,11 @@
+Upon successful completion of this workshop, I have acquired the abilities to organize source code into modules, using header 
+and implementation files, compile and link modular programs, distinguish the contents of a header and an implementation file. 
+I have learned to use, reuse, and modify source code from one project to another. This workshop has taught me how to write 
+modular programs that are easy to maintain, debug, and reuse. I have learned how to use header files to declare the interface 
+of a module, and implementation files to define the functionality of a module. I have also learned how to use a compiler and 
+a linker to create executable files from multiple source files. Additionally, I have learned how to reuse existing code from 
+other projects by copying or including the relevant header and implementation files, and how to modify them to suit my needs. 
+Furthermore, I have learned how to avoid duplication of code by using functions, variables, and constants that are defined in 
+one module and used in another. I have also learned how to document my code using comments and naming conventions that make it 
+easier to understand and modify. I am grateful that I did not encounter any difficulty in completing the workshop. This is a 
+rare occurrence in an OOP244 class, which is usually challenging and demanding.
