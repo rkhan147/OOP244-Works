@@ -1,17 +1,20 @@
 #include "Room.h"
 
-void seneca::set(Room& room, int numberOfGuests, const char* roomNumber)
-{
-}
+namespace seneca {
 
-void seneca::print(const Room& room)
-{
-}
+	void set(Room& room, int numberOfGuests, const char* roomNumber) {
 
-void seneca::book(Room& room)
-{
-}
+	}
 
-void seneca::vacate(Room& room)
-{
+	void print(const Room& room) {
+
+	}
+
+	void book(Room& room) {
+
+	}
+
+	void vacate(Room& room) {
+
+	}
 }

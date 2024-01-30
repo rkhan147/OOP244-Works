@@ -15,7 +15,5 @@ namespace seneca {
 	void print(const Room& room);
 	void book(Room& room);
 	void vacate(Room& room);
-
 }
-
 #endif // !SENECA_ROOM_H

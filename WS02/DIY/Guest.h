@@ -13,7 +13,5 @@ namespace seneca {
 	void print(const Guest& guest);
 	void book(Guest& guest);
 	void vacate(Guest& guest);
-
 }
-
 #endif // !GUEST_H
