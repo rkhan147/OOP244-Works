@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="correct_output.txt" />
+    <Text Include="reflect.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Guest.cpp" />

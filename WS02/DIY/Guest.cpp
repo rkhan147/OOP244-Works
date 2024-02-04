@@ -1,3 +1,16 @@
+/*
+
+Name: Ridwan Khan
+Email: rkhan147@myseneca.ca
+ID: 162409213
+Date: January 31, 2024
+
+I have done all the coding by myself and only copied the
+code that my professor provided to complete my workshops and
+assignments.
+
+*/
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
@@ -9,7 +22,7 @@ namespace seneca {
 
 	void set(Guest& guest, const char* first, const char* last, int age) {
 
-		if ((first != nullptr && strcmp(first, "") != 0) && (last != nullptr && strcmp(last, "") != 0)) {
+		if ((first != nullptr && strlen(first) != 0) && (last != nullptr && strlen(last) != 0)) {
 
 			guest.m_firstName = new char[strlen(first) + 1];
 			strcpy(guest.m_firstName, first);
@@ -22,12 +35,11 @@ namespace seneca {
 	void print(const Guest& guest) {
 
 		if (guest.m_firstName != nullptr && guest.m_lastName != nullptr) {
-			cout << guest.m_firstName << ' ' << guest.m_lastName;
-
-			if (!guest.m_adult) cout << "(child)";
+			cout << guest.m_firstName << " " << guest.m_lastName;
+			if (!guest.m_adult) cout << "(Child)";
 		}
-		else cout << "Vacant!";
-
+		else cout << "Vacated!";
+			
 		cout << endl;
 	}
 	void book(Guest& guest) {
