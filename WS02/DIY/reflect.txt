@@ -1,0 +1,13 @@
+This workshop has been instrumental in advancing my programming proficiency, focusing on dynamic memory management, 
+function overloading, and reference utilization. The allocation and deallocation of dynamic memory for arrays and 
+single objects were explored in-depth, enhancing my ability to efficiently handle memory resources. Function 
+overloading was a key concept learned, providing insight into creating adaptable functions for code reusability and 
+improved codebase readability. Understanding how to leverage references proved crucial for optimizing code 
+performance.
+
+Despite the enriching experience, challenges arose in mastering the intricacies of memory deallocation, emphasizing 
+the need for meticulous memory handling to prevent leaks and ensure resource efficiency. The wording of what was
+required of me to do also proved challenging as there were many gaps of information that I had to fill myself as I
+wrote and tested my code over and over again. Overall, the workshop has significantly bolstered my programming 
+skills, empowering me to write more efficient and organized code while highlighting the importance of careful memory 
+management in creating robust programs.
