@@ -1,0 +1,12 @@
+Alright, so after diving deep into this workshop and reviewing my final solutions, along with revisiting the course 
+notes, I feel pretty confident about my grasp on the concepts covered. First off, defining class types was a breeze.
+I understood how to structure them and encapsulate data within them to ensure privacy. Using member functions to 
+both query and modify the state of objects was straightforward, and it's clear to me now how these functions play a 
+crucial role in managing the behavior of objects.
+
+Formatting output on the console was another skill I honed during this workshop. I learned various techniques to 
+present data in a readable and aesthetically pleasing manner, which is essential when communicating with users or 
+other parts of a program. Overall, this workshop has equipped me with a solid understanding of object-oriented 
+programming fundamentals, specifically in C++. I can confidently explain to my instructor how I've learned to define
+classes, privatize data, utilize member functions effectively, and format output for better user experience. It's 
+been a productive learning experience, and I'm excited to apply these skills in future projects.
