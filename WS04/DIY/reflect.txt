@@ -1,0 +1,18 @@
+Completing this workshop has been quite a journey! I've gained a solid understanding of several key topics in 
+object-oriented programming, specifically in C++. First off, I delved into the world of constructors – both default and 
+overloaded. Constructors are like the blueprints for initializing objects, and learning how to use them effectively was 
+crucial. Overloading constructors opened up a whole new level of flexibility, allowing me to create objects with different 
+sets of parameters.
+
+Next up were destructors, the cleanup crew of the class. They handle the deallocation of resources when an object goes out 
+of scope, which is essential for preventing memory leaks. Understanding how to properly implement destructors was vital for 
+managing dynamic resources allocated during runtime.
+
+One of the most interesting aspects was using the current object within the class's member functions. It's like the class 
+is aware of itself and can manipulate its own state. This concept really solidified my understanding of object-oriented 
+programming and encapsulation.
+
+Throughout the workshop, I faced some challenges, especially with memory management and understanding the intricacies of 
+constructor and destructor interactions. However, with practice and guidance, I was able to overcome these difficulties 
+and grasp the concepts effectively. Overall, completing this workshop has equipped me with a strong foundation in C++ OOP, 
+and I'm excited to apply these skills to future projects.
