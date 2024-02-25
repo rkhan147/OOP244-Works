@@ -14,6 +14,7 @@
 ***********************************************************************/
 
 #include <iostream>
+#include <ostream>
 #include <cstring>
 #include "Hero.h"
 using namespace std;
