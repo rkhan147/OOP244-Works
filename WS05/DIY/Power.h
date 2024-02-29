@@ -1,3 +1,10 @@
+/*
+Name: Ridwan Khan
+Email: rkhan147@myseneca.ca
+ID: 162409213
+Date: 2024-02-29
+*/
+
 #ifndef SENECA_POWER_H
 #define SENECA_POWER_H
 

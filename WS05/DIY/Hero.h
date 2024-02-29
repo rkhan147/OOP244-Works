@@ -1,3 +1,10 @@
+/*
+Name: Ridwan Khan
+Email: rkhan147@myseneca.ca
+ID: 162409213
+Date: 2024-02-29
+*/
+
 #ifndef SENECA_HERO_H
 #define SENECA_HERO_H
 
@@ -11,6 +18,7 @@ namespace seneca {
 		Power* powers;
 		int numberOfPowers;
 		int powerLevel;
+		void updatePowerLevel();
 
 	public:
 
@@ -21,10 +29,11 @@ namespace seneca {
 		std::ostream& display() const;
 		Hero& operator+=(const Power& power);
 		Hero& operator-=(int value);
-		friend bool operator<(const Hero& h1, const Hero& h2);
-		friend bool operator>(const Hero& h1, const Hero& h2);
-		friend Power& operator>>(Power& power, Hero& hero);
-		friend Hero& operator<<(Hero& hero, const Power& power);
+		bool operator<(const Hero& other) const;
+		bool operator>(const Hero& other) const;
+		friend Hero& operator>>(Power& power, Hero& hero);
+		friend Hero& operator<<(Hero& hero, Power& power);
 	};
+
 }
 #endif

@@ -101,7 +101,6 @@ int main() {
 	cout << endl;
 	cout << "----------------------------------------" << endl << endl;
 
-
 	
 	return 0;
 }

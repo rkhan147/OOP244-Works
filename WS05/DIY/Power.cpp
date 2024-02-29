@@ -1,3 +1,10 @@
+/*
+Name: Ridwan Khan
+Email: rkhan147@myseneca.ca
+ID: 162409213
+Date: 2024-02-29
+*/
+
 #define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include <cstring>
