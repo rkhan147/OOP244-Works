@@ -26,6 +26,7 @@ namespace seneca
     Email& Email::operator=(const Email& rhs) {
 
         if (this != &rhs && rhs.m_email && rhs.m_name) {
+
             delete[] m_email;
             m_email = nullptr;
             m_email = new char[strlen(rhs.m_email) + 1];
@@ -36,7 +37,6 @@ namespace seneca
             strcpy(m_name, rhs.m_name);
             strcpy(m_year, rhs.m_year);
         }
-
         return *this;
     }
 
@@ -46,26 +46,27 @@ namespace seneca
         bool result = false;
 
         if (in.getline(buffer, BUFFER_SIZE, ',')) {
+
             delete[] m_email;
             m_email = new char[strlen(buffer) + 1];
             strcpy(m_email, buffer);
-
             if (in.getline(buffer, BUFFER_SIZE, ',')) {
+
                 delete[] m_name;
                 m_name = new char[strlen(buffer) + 1];
                 strcpy(m_name, buffer);
-
                 if (in.getline(buffer, BUFFER_SIZE, '\n')) {
+
                     strcpy(m_year, buffer);
                     result = true;
                 }
             }
         }
-
         return result;
     }
 
     Email::~Email() {
+
         delete[] m_name;
         delete[] m_email;
     }
@@ -97,22 +98,24 @@ namespace seneca
         ifstream file(m_filename);
 
         if (!file.is_open()) {
+
             cout << "Failed to open file: " << m_filename << endl;
         }
-        else
-        {
+        else {
+
             m_noOfEmails = 0;
             while (file) {
+
                 m_noOfEmails += (file.get() == '\n');
             }
             file.close();
+            if (m_noOfEmails == 0) {
 
-            if (m_noOfEmails == 0)
-            {
                 delete[] m_filename;
                 m_filename = nullptr;
             }
             else {
+
                 m_noOfEmails++;
                 isValid = true;
             }
@@ -121,12 +124,16 @@ namespace seneca
     }
 
     void EmailFile::loadEmails() {
+
         if (m_filename != nullptr) {
+
             delete[] m_emailLines;
             m_emailLines = new Email[m_noOfEmails];
             std::ifstream file(m_filename);
             for (int i = 0; i < m_noOfEmails; ++i) {
+
                 if (!m_emailLines[i].load(file)) {
+
                     break;
                 }
             }
@@ -135,28 +142,33 @@ namespace seneca
     }
 
     EmailFile::EmailFile() : m_emailLines(nullptr), m_filename(nullptr), m_noOfEmails(0) {}
-
     EmailFile::EmailFile(const char* filename) : EmailFile() {
+
         if (filename != nullptr) {
+
             setFilename(filename);
             if (setNoOfEmails()) {
+
                 loadEmails();
             }
         }
     }
 
     EmailFile::EmailFile(const EmailFile& other) : EmailFile() {
+
         *this = other;
     }
 
     EmailFile& EmailFile::operator=(const EmailFile& other) {
         if (this != &other) {
+
             delete[] m_emailLines;
             delete[] m_filename;
             m_emailLines = nullptr;
             m_filename = nullptr;
             m_noOfEmails = other.m_noOfEmails;
             if (other.m_filename != nullptr) {
+
                 setFilename(other.m_filename);
                 loadEmails();
             }
@@ -165,23 +177,27 @@ namespace seneca
     }
 
     EmailFile::~EmailFile() {
+
         delete[] m_emailLines;
         delete[] m_filename;
     }
 
     EmailFile::operator bool() const {
+
         return m_filename != nullptr;
     }
 
     std::ostream& EmailFile::view(std::ostream& ostr) const
     {
         if (m_filename) {
+
             ostr << m_filename << endl;
             ostr.width(strlen(m_filename));
             ostr.fill('=');
             ostr << "=" << endl;
             ostr.fill(' ');
             for (int i = 0; i < m_noOfEmails - 1; i++) {
+
                 ostr.width(35);
                 ostr.setf(ios::left);
                 ostr << m_emailLines[i].m_email;
@@ -200,12 +216,15 @@ namespace seneca
     }
 
     bool EmailFile::saveToFile(const char* filename) const {
-        std::ofstream file(filename);
+
+        ofstream file(filename);
         if (!file.is_open()) {
-            std::cout << "Error: Could not open file: " << filename << std::endl;
+
+            cout << "Error: Could not open file: " << filename << endl;
             return false;
         }
         for (int i = 0; i < m_noOfEmails - 1; ++i) {
+
             file << m_emailLines[i].m_email << ','
                 << m_emailLines[i].m_name << ','
                 << m_emailLines[i].m_year << '\n';
@@ -214,4 +233,34 @@ namespace seneca
         return true;
     }
 
+    void EmailFile::fileCat(const EmailFile& obj, const char* name) {
+        
+        if (!(*this) || !obj) {
+
+            return;
+        }
+        int totalEmails = m_noOfEmails + obj.m_noOfEmails;
+        if (totalEmails > 0) {
+            
+            Email* newEmailLines = new Email[totalEmails];
+            for (int i = 0; i < m_noOfEmails; ++i) {
+
+                newEmailLines[i] = m_emailLines[i];
+            }
+            for (int i = 0; i < obj.m_noOfEmails; ++i) {
+
+                newEmailLines[m_noOfEmails + i] = obj.m_emailLines[i];
+            }
+
+            delete[] m_emailLines;
+            m_emailLines = newEmailLines;
+            m_noOfEmails = totalEmails;
+        }
+        if (name != nullptr) {
+
+            setFilename(name);
+        }
+
+        saveToFile(m_filename);
+    }
 }

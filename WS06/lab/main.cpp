@@ -47,7 +47,7 @@ int main() {
    // 6. Operator= test
    eFile = eFile4;
    cout << eFile << endl;
-/*
+
    // 7. Testing fileCat function (concatenation)
    EmailFile eFile5("emailFile_test2.csv");
    eFile3.fileCat(eFile5);
@@ -55,7 +55,7 @@ int main() {
    eFile3.fileCat(eFile5, "copyEmailFile.csv");
    EmailFile eFile6("copyEmailFile.csv");
    cout << eFile6 << endl;
-   */
+   
 
    return 0;
 }

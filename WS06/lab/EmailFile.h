@@ -24,6 +24,7 @@ namespace seneca {
     class EmailFile;
     class Email
     {
+
         char* m_email{ nullptr };
         char* m_name{ nullptr };
         char m_year[5]{ '\0' };
@@ -33,8 +34,8 @@ namespace seneca {
 
         // Make the EmailFile class a "friend" of the Email class
         friend class EmailFile;
-
     public:
+
         Email() {};
         Email& operator=(const Email&);
         bool load(std::ifstream& in);
@@ -44,6 +45,7 @@ namespace seneca {
 
     class EmailFile
     {
+
         Email* m_emailLines{ nullptr };
         char* m_filename{};
         int m_noOfEmails{ 0 };
@@ -51,8 +53,9 @@ namespace seneca {
         void setEmpty();
         bool setNoOfEmails();
         void loadEmails();
-
+    
     public:
+
         EmailFile();
         EmailFile(const char* filename);
         EmailFile(const EmailFile& other);
@@ -61,6 +64,7 @@ namespace seneca {
         operator bool() const;
         std::ostream& view(std::ostream& ostr) const;
         bool saveToFile(const char* filename) const;
+        void fileCat(const EmailFile& obj, const char* name = nullptr);
     };
 
     std::ostream& operator<<(std::ostream& ostr, const EmailFile& text);
