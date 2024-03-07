@@ -21,7 +21,6 @@ namespace seneca {
     Menu::Menu(const char* menuContent, int numberOfTabs)
         : m_text(menuContent), m_numOptions(0), m_numTabs(numberOfTabs) {
 
-        // Count the number of options by counting newline characters
         for (const char* p = m_text; *p; ++p) {
 
             if (*p == '\n') {
@@ -30,13 +29,8 @@ namespace seneca {
         }
     }
 
-    Menu::~Menu() {
-        // No dynamic memory to deallocate
-    }
-
     void Menu::display() const {
 
-        // Display the menu options
         for (int i = 0; i < m_numTabs; ++i) {
             cout << "   ";
         }
@@ -57,7 +51,6 @@ namespace seneca {
         display();
         cin >> selection;
 
-        // Validate the input
         while (cin.fail() || selection < 0 || selection > m_numOptions || cin.get() != '\n') {
 
             if (selection < 0 || selection > m_numOptions) {

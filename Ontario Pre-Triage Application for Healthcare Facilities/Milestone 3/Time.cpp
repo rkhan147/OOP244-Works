@@ -34,23 +34,22 @@ namespace seneca {
     void Time::read(istream& istr) {
         unsigned int hours, minutes;
         char colon;
-        istr >> hours;
-        if (istr.peek() != ':') {
+        while (true) {
+            istr >> hours;
+            if (istr.good() && istr.peek() == ':') {
+                istr >> colon >> minutes;
+                if (!istr.fail() && colon == ':') {
+                    m_minutes = hours * 60 + minutes;
+                    break;
+                }
+            }
+            if (istr.eof()) { // end of file, no more data to read
+                break;
+            }
             istr.clear();
             istr.ignore(1000, '\n');
-            cout << "Bad time entry, retry (HH:MM): ";
-            read(istr);
-        }
-        else {
-            istr >> colon >> minutes;
-            if (istr.fail() || colon != ':') {
-                istr.clear();
-                istr.ignore(1000, '\n');
+            if (&istr == &std::cin) { // only print error message for std::cin
                 cout << "Bad time entry, retry (HH:MM): ";
-                read(istr);
-            }
-            else {
-                m_minutes = hours * 60 + minutes;
             }
         }
     }

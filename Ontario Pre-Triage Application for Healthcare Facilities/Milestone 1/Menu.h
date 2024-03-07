@@ -28,7 +28,6 @@ namespace seneca {
         int m_numTabs;
     public:
         Menu(const char* menuContent, int numberOfTabs = 0);
-        ~Menu();
         void display() const;
         int& operator>>(int& selection);
     };
