@@ -1,4 +1,18 @@
-// Patient.cpp
+/* Citation and Sources...
+Final Project Milestone 1
+Module: Patient
+Filename: Patient.cpp
+Version 1.0
+Author   Ridwan Khan
+Revision History
+-----------------------------------------------------------
+Date      Reason
+2024/03/11  Preliminary release
+-----------------------------------------------------------
+I have done all the coding by myself and only copied the code
+that my professor provided to complete my workshops and assignments.
+-----------------------------------------------------------*/
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
@@ -68,11 +82,11 @@ namespace seneca {
         if (this->operator bool()) {
             if (&ostr == &std::cout) {
                 ostr << "Ticket No: " << m_ticket.number() << ", Issued at: " << m_ticket.time() << std::endl;
-                ostr << m_name << ", OHIP: " << m_OHIP;
+                ostr << m_name << ", OHIP: " << m_OHIP << endl;
             }
             else if (&ostr == &std::clog) {
                 ostr << m_name;
-                for (int i = 0; i < 53 - strlen(m_name); i++) {
+                for (size_t i = 0; i < 53 - strlen(m_name); i++) {
                     ostr << '.';
                 }
                 ostr << m_OHIP << "   " << m_ticket.number() << " " << m_ticket.time();
@@ -83,7 +97,7 @@ namespace seneca {
             }
         }
         else {
-            ostr << "Invalid Patient Record";
+            ostr << "Invalid Patient Record" << endl;
         }
         return ostr;
     }
@@ -94,13 +108,22 @@ namespace seneca {
         if (&istr == &std::cin) {
             std::cout << "Name: ";
             istr.get(tempName, 51);
+            istr.ignore(2000, '\n'); // Ignore the rest of the line after reading the name
             std::cout << "OHIP: ";
-            while (!(istr >> tempOHIP) || tempOHIP < 100000000 || tempOHIP > 999999999) {
-                istr.clear();
-                istr.ignore(2000, '\n');
-                std::cout << "Bad integer value, try again: ";
+            while (true) {
+                if (!(istr >> tempOHIP)) {
+                    istr.clear(); // Clear the error state
+                    istr.ignore(2000, '\n'); // Ignore the rest of the line
+                    std::cout << "Bad integer value, try again: ";
+                }
+                else if (tempOHIP < 100000000 || tempOHIP > 999999999) {
+                    istr.ignore(2000, '\n'); // Ignore the rest of the line
+                    std::cout << "Invalid value enterd, retry[100000000 <= value <= 999999999]: ";
+                }
+                else {
+                    break; // Valid input
+                }
             }
-            istr.ignore(2000, '\n');
         }
         else {
             istr.get(tempName, 51, ',');
