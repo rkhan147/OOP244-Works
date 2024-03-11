@@ -22,30 +22,20 @@ namespace seneca {
     const int BUFFER_SIZE = 1024; // Maximum possible size for all the fields of the Email record
 
     class EmailFile;
-    class Email
-    {
 
+    class Email {
         char* m_email{ nullptr };
         char* m_name{ nullptr };
         char m_year[5]{ '\0' };
-
-        // Prohibit the copy constructor for this class
-        Email(const Email&) = delete;
-
-        // Make the EmailFile class a "friend" of the Email class
-        friend class EmailFile;
-    public:
-
         Email() {};
+        ~Email();
         Email& operator=(const Email&);
         bool load(std::ifstream& in);
-        ~Email();
+        friend class EmailFile; // Make the EmailFile class a "friend" of the Email class
+        Email(const Email&) = delete; // Prohibit the copy constructor for this class
     };
 
-
-    class EmailFile
-    {
-
+    class EmailFile {
         Email* m_emailLines{ nullptr };
         char* m_filename{};
         int m_noOfEmails{ 0 };
@@ -53,18 +43,18 @@ namespace seneca {
         void setEmpty();
         bool setNoOfEmails();
         void loadEmails();
-    
-    public:
+        void copyEmails(const EmailFile& src);
 
+    public:
         EmailFile();
         EmailFile(const char* filename);
         EmailFile(const EmailFile& other);
         EmailFile& operator=(const EmailFile& other);
         ~EmailFile();
-        operator bool() const;
-        std::ostream& view(std::ostream& ostr) const;
         bool saveToFile(const char* filename) const;
         void fileCat(const EmailFile& obj, const char* name = nullptr);
+        operator bool() const;
+        std::ostream& view(std::ostream& ostr) const;
     };
 
     std::ostream& operator<<(std::ostream& ostr, const EmailFile& text);
