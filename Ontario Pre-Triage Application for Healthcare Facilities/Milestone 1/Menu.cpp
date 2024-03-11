@@ -13,6 +13,7 @@ I have done all the coding by myself and only copied the code
 that my professor provided to complete my workshops and assignments.
 -----------------------------------------------------------*/
 
+#include <sstream>
 #include "Menu.h"
 
 using namespace std;
@@ -30,20 +31,15 @@ namespace seneca {
     }
 
     void Menu::display() const {
+        string tabIndent(m_numTabs * 3, ' ');
+        istringstream iss(m_text);
+        string line;
 
-        for (int i = 0; i < m_numTabs; ++i) {
-            cout << "   ";
+        while (getline(iss, line, '\n')) {
+            cout << tabIndent << line << endl;
         }
-
-        cout << m_text << endl;
-        for (int i = 0; i < m_numTabs; ++i) {
-            cout << "   ";
-        }
-        cout << "0- Exit" << endl;
-        for (int i = 0; i < m_numTabs; ++i) {
-            cout << "   ";
-        }
-        cout << "> ";
+        cout << tabIndent << "0- Exit" << endl;
+        cout << tabIndent << "> ";
     }
 
     int& Menu::operator>>(int& selection) {

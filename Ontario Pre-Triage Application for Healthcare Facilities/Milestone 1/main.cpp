@@ -33,7 +33,7 @@ void menuTester() {
    while (m >> selection) {
       switch (selection) {
       case 1: {
-         Menu sub_menu("Sub-menu of option one!\n   1- sub one\n   2- sub two\n   3- sub two\n   4- sub two", 1);
+         Menu sub_menu("Sub-menu of option one!\n1- sub one\n2- sub two\n3- sub two\n4- sub two", 1);
          switch (sub_menu >> selection) {
          case 1:
             cout << "   sub menu one selected" << endl << endl;
