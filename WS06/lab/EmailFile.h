@@ -31,8 +31,10 @@ namespace seneca {
         ~Email();
         Email& operator=(const Email&);
         bool load(std::ifstream& in);
-        friend class EmailFile; // Make the EmailFile class a "friend" of the Email class
-        Email(const Email&) = delete; // Prohibit the copy constructor for this class
+        // Prohibit the copy constructor for this class
+        Email(const Email&) = delete; 
+        // Make the EmailFile class a "friend" of the Email class
+        friend class EmailFile;
     };
 
     class EmailFile {

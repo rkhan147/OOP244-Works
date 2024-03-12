@@ -21,7 +21,6 @@
 using namespace std;
 namespace seneca {
 
-    // Email class implementations
     Email::~Email() {
         delete[] m_email;
         delete[] m_name;
@@ -60,7 +59,6 @@ namespace seneca {
         return result;
     }
 
-    // EmailFile class implementations
     EmailFile::EmailFile() : m_emailLines(nullptr), m_filename(nullptr), m_noOfEmails(0) {}
 
     EmailFile::EmailFile(const char* filename) : EmailFile() {
