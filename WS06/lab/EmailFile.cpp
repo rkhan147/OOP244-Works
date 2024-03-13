@@ -70,16 +70,26 @@ namespace seneca {
         }
     }
 
-    EmailFile::EmailFile(const EmailFile& other) : EmailFile() {
+    EmailFile::EmailFile(const EmailFile& other) : m_emailLines(nullptr), m_filename(nullptr), m_noOfEmails(0) {
         *this = other;
     }
 
     EmailFile& EmailFile::operator=(const EmailFile& other) {
         if (this != &other) {
             delete[] m_emailLines;
-            m_emailLines = nullptr;
+            delete[] m_filename;
+
             m_noOfEmails = other.m_noOfEmails;
-            copyEmails(other);
+            if (other.m_emailLines) {
+                m_emailLines = new Email[m_noOfEmails];
+                for (int i = 0; i < m_noOfEmails; ++i) {
+                    m_emailLines[i] = other.m_emailLines[i];
+                }
+            }
+            if (other.m_filename) {
+                m_filename = new char[strlen(other.m_filename) + 1];
+                strcpy(m_filename, other.m_filename);
+            }
         }
         return *this;
     }
@@ -88,6 +98,7 @@ namespace seneca {
         delete[] m_emailLines;
         delete[] m_filename;
     }
+
 
     void EmailFile::copyEmails(const EmailFile& src) {
         if (src.m_emailLines) {
