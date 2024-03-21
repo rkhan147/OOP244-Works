@@ -1,0 +1,19 @@
+Through the completion of this workshop, I have gained a deeper understanding of object-oriented 
+programming concepts, particularly in the context of inheritance and polymorphism. The process 
+of inheriting a derived class from a base class was instrumental in learning how to extend the 
+functionality of existing code without modifying it directly.
+
+One challenge I encountered was shadowing a base class member function with a derived class 
+member function. It took some practice to understand how to properly override functions and when 
+to use the `override` keyword.
+
+Accessing a shadowed member function defined in a base class was another area that required 
+attention. I learned the importance of using the scope resolution operator to specify which 
+version of the function I wanted to call.
+
+Implementing custom input/output operators enhanced my understanding of operator overloading and 
+how it can be used to streamline the process of reading and writing class instances.
+
+Overall, this workshop has solidified my understanding of these advanced C++ features and has 
+prepared me to apply them in future projects. The hands-on experience has been invaluable, and I 
+look forward to tackling more complex problems with the knowledge I've acquired.
