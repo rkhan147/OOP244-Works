@@ -1,0 +1,26 @@
+In completing this workshop and the project milestones, 
+I have learned the importance of object-oriented programming 
+concepts such as abstraction, encapsulation, and inheritance. 
+I now understand how to define a pure virtual function, 
+which serves as a contract for derived classes to implement 
+specific behaviors. I have also learned how to code an 
+abstract base class, which cannot be instantiated but can 
+be used as a foundation for other classes.
+
+Implementing behavior declared in a pure virtual function 
+was challenging but rewarding, as it allowed me to see 
+the practical application of these concepts. I have come 
+to appreciate the difference between an abstract base class 
+and a concrete class, with the former providing a template 
+for shared behavior and the latter being a fully implemented 
+class that can be instantiated.
+
+One issue that caused me difficulty was understanding when 
+and how to use virtual destructors. However, after reviewing 
+the course notes and experimenting with code, I have a better 
+grasp of their purpose in preventing resource leaks and 
+ensuring proper cleanup in polymorphic class hierarchies.
+
+Overall, this workshop has deepened my understanding of C++ 
+and object-oriented design, and I feel more confident in my 
+ability to create robust and maintainable software systems.
