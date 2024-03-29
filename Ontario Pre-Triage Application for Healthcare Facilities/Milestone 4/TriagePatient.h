@@ -1,21 +1,22 @@
-#ifndef TRIAGEPATIENT_H
-#define TRIAGEPATIENT_H
+#ifndef SENECA_TRIAGEPATIENT_H_
+#define SENECA_TRIAGEPATIENT_H_
 
 #include "Patient.h"
 
 namespace seneca {
     class TriagePatient : public Patient {
-        char* m_symptoms;
+    private:
+        char* symptoms;
     public:
-        TriagePatient(int ticketNumber = 0);
+        TriagePatient();
         TriagePatient(const TriagePatient& other);
         TriagePatient& operator=(const TriagePatient& other);
-        virtual ~TriagePatient();
+        ~TriagePatient();
 
         virtual char type() const override;
-        virtual std::ostream& write(std::ostream& ostr) const override;
-        virtual std::istream& read(std::istream& istr) override;
+        virtual std::ostream& write(std::ostream& os) const override;
+        virtual std::istream& read(std::istream& is) override;
     };
 }
 
-#endif // TRIAGEPATIENT_H
+#endif // SENECA_TRIAGEPATIENT_H_

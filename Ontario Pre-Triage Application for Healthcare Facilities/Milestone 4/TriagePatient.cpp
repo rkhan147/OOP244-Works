@@ -2,53 +2,76 @@
 #include "TriagePatient.h"
 
 namespace seneca {
-    TriagePatient::TriagePatient(int ticketNumber) : Patient(ticketNumber), m_symptoms(nullptr) {}
+    int nextTriageTicket = 1;
+
+    TriagePatient::TriagePatient() : Patient(nextTriageTicket++), symptoms(nullptr) {}
 
     TriagePatient::TriagePatient(const TriagePatient& other) : Patient(other) {
-        if (other.m_symptoms != nullptr) {
-            m_symptoms = new char[strlen(other.m_symptoms) + 1];
-            strcpy(m_symptoms, other.m_symptoms);
+        if (other.symptoms != nullptr) {
+            symptoms = new char[strlen(other.symptoms) + 1];
+            strcpy(symptoms, other.symptoms);
+        }
+        else {
+            symptoms = nullptr;
         }
     }
 
     TriagePatient& TriagePatient::operator=(const TriagePatient& other) {
         if (this != &other) {
             Patient::operator=(other);
-            delete[] m_symptoms;
-            if (other.m_symptoms != nullptr) {
-                m_symptoms = new char[strlen(other.m_symptoms) + 1];
-                strcpy(m_symptoms, other.m_symptoms);
+            delete[] symptoms;
+            if (other.symptoms != nullptr) {
+                symptoms = new char[strlen(other.symptoms) + 1];
+                strcpy(symptoms, other.symptoms);
+            }
+            else {
+                symptoms = nullptr;
             }
         }
         return *this;
     }
 
     TriagePatient::~TriagePatient() {
-        delete[] m_symptoms;
+        delete[] symptoms;
     }
 
     char TriagePatient::type() const {
         return 'T';
     }
 
-    std::ostream& TriagePatient::write(std::ostream& ostr) const {
-        Patient::write(ostr);
-        ostr << "Symptoms: ";
-        if (m_symptoms != nullptr) {
-            ostr << m_symptoms;
+    std::ostream& TriagePatient::write(std::ostream& os) const {
+        if (&os == &std::cout) {
+            os << "TRIAGE\n";
         }
-        return ostr << std::endl;
+        Patient::write(os);
+        if (&os == &std::cout) {
+            os << "Symptoms: " << (symptoms != nullptr ? symptoms : "") << "\n";
+        }
+        else if (&os != &std::clog) {
+            os << "," << (symptoms != nullptr ? symptoms : "");
+        }
+        return os;
     }
 
-    std::istream& TriagePatient::read(std::istream& istr) {
-        Patient::read(istr);
-        char tempSymptoms[513]; // Max length of symptoms is 512 characters
-        istr.getline(tempSymptoms, 513, ',');
-        if (m_symptoms != nullptr) {
-            delete[] m_symptoms;
+    std::istream& TriagePatient::read(std::istream& is) {
+        Patient::read(is);
+        if (&is == &std::cin) {
+            std::cout << "Symptoms: ";
+            char tempSymptoms[512];
+            is.get(tempSymptoms, 512, '\n');
+            is.ignore(10000, '\n');
+            symptoms = new char[strlen(tempSymptoms) + 1];
+            strcpy(symptoms, tempSymptoms);
         }
-        m_symptoms = new char[strlen(tempSymptoms) + 1];
-        strcpy(m_symptoms, tempSymptoms);
-        return istr;
+        else {
+            is.ignore(1, ',');
+            char tempSymptoms[512];
+            is.get(tempSymptoms, 512, ',');
+            is.ignore(10000, ',');
+            symptoms = new char[strlen(tempSymptoms) + 1];
+            strcpy(symptoms, tempSymptoms);
+            nextTriageTicket = number() + 1;
+        }
+        return is;
     }
 }

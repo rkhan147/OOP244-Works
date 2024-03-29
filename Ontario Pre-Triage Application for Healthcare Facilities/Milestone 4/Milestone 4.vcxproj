@@ -136,7 +136,8 @@
     <ClCompile Include="TestPatient.cpp" />
     <ClCompile Include="Ticket.cpp" />
     <ClCompile Include="Time.cpp" />
-    <ClCompile Include="TstP_Tester.cpp" />
+    <ClCompile Include="TrgP_Tester.cpp" />
+    <ClCompile Include="TriagePatient.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +146,7 @@
     <ClInclude Include="TestPatient.h" />
     <ClInclude Include="Ticket.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="TriagePatient.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
