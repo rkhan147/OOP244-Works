@@ -14,137 +14,132 @@ that my professor provided to complete my workshops and assignments.
 -----------------------------------------------------------*/
 
 #define _CRT_SECURE_NO_WARNINGS
-#include <iostream>
-#include <cstring>
+#include <iomanip>
+#include <string>
 #include "Patient.h"
-#include "Utils.h"
 
 namespace seneca {
-    Patient::Patient(int ticketNumber) : m_ticket(ticketNumber) {
-        m_name = nullptr;
-        m_OHIP = 0;
+    Patient::Patient(int ticketNumber) : OHIP(0), ticket(ticketNumber) {
+        name = nullptr;
     }
 
-    Patient::Patient(const Patient& other) : m_ticket(other.m_ticket) {
-        m_name = new char[strlen(other.m_name) + 1];
-        strcpy(m_name, other.m_name);
-        m_OHIP = other.m_OHIP;
+    Patient::Patient(const Patient& other) : OHIP(other.OHIP), ticket(other.ticket) {
+        if (other.name != nullptr) {
+            name = new char[strlen(other.name) + 1];
+            strcpy(name, other.name);
+        }
+        else {
+            name = nullptr;
+        }
     }
 
     Patient& Patient::operator=(const Patient& other) {
         if (this != &other) {
-            delete[] m_name;
-            m_name = new char[strlen(other.m_name) + 1];
-            strcpy(m_name, other.m_name);
-            m_OHIP = other.m_OHIP;
-            m_ticket = other.m_ticket;
+            OHIP = other.OHIP;
+            ticket = other.ticket;
+            delete[] name;
+            if (other.name != nullptr) {
+                name = new char[strlen(other.name) + 1];
+                strcpy(name, other.name);
+            }
+            else {
+                name = nullptr;
+            }
         }
         return *this;
     }
 
     Patient::~Patient() {
-        delete[] m_name;
+        delete[] name;
     }
 
-    char Patient::type() const {
-        return '\0';
-    }
-
-    bool Patient::operator==(char ch) const {
-        return type() == ch;
+    bool Patient::operator==(char type) const {
+        return this->type() == type;
     }
 
     bool Patient::operator==(const Patient& other) const {
-        return type() == other.type();
+        return this->type() == other.type();
     }
 
     void Patient::setArrivalTime() {
-        m_ticket.resetTime();
+        ticket.resetTime();
     }
 
     Time Patient::time() const {
-        return m_ticket.time();
+        return ticket.time();
     }
 
     int Patient::number() const {
-        return m_ticket.number();
+        return ticket.number();
     }
 
     Patient::operator bool() const {
-        return m_name != nullptr && m_OHIP >= 100000000 && m_OHIP <= 999999999;
+        return name != nullptr;
     }
 
-    Patient::operator const char* () const {
-        return m_name;
+    const char* Patient::operator[](int index) const {
+        if (index == 0) return name;
+        else if (index == 1) return std::to_string(OHIP).c_str();
+        else return nullptr;
     }
 
-    std::ostream& Patient::write(std::ostream& ostr) const {
-        if (this->operator bool()) {
-            if (&ostr == &std::cout) {
-                ostr << "Ticket No: " << m_ticket.number() << ", Issued at: " << m_ticket.time() << std::endl;
-                ostr << m_name << ", OHIP: " << m_OHIP << endl;
-            }
-            else if (&ostr == &std::clog) {
-                ostr << m_name;
-                for (size_t i = 0; i < 53 - strlen(m_name); i++) {
-                    ostr << '.';
-                }
-                ostr << m_OHIP << "   " << m_ticket.number() << " " << m_ticket.time();
-            }
-            else {
-                ostr << type() << ',' << m_name << ',' << m_OHIP << ',';
-                m_ticket.write(ostr);
-            }
+    std::ostream& Patient::write(std::ostream& os) const {
+        if (!name) {
+            os << "Invalid Patient Record";
+            return os;
+        }
+
+        if (&os == &std::cout) {
+            os << ticket << std::endl << name << ", OHIP: " << OHIP << "\n";
+        }
+        else if (&os == &std::clog) {
+            os << std::setw(53) << std::left << std::setfill('.') << name
+                << std::setw(9) << std::right << std::setfill(' ') << OHIP
+                << std::setw(5) << std::right << ticket.number() << " " << ticket.time();
         }
         else {
-            ostr << "Invalid Patient Record" << endl;
+            os << type() << "," << name << "," << OHIP << ",";
+            ticket.write(os);
         }
-        return ostr;
+        return os;
     }
 
-    std::istream& Patient::read(std::istream& istr) {
-    char tempName[51];
-    int tempOHIP;
-    if (&istr == &std::cin) {
-        std::cout << "Name: ";
-        istr.get(tempName, 51);
-        istr.ignore(2000, '\n'); // Ignore the rest of the line after reading the name
-        std::cout << "OHIP: ";
-        while (true) {
-            if (!(istr >> tempOHIP)) {
-                istr.clear(); // Clear the error state
-                istr.ignore(2000, '\n'); // Ignore the rest of the line
-                std::cout << "Bad integer value, try again: ";
-            }
-            else if (tempOHIP < 100000000 || tempOHIP > 999999999) {
-                istr.ignore(2000, '\n'); // Ignore the rest of the line
-                std::cout << "Invalid value entered, retry[100000000 <= value <= 999999999]: ";
-            }
-            else {
-                break; // Valid input
-            }
-        }
-        m_ticket = Ticket(seneca::U.getTime());
-    }
-    else {
-        istr.get(tempName, 51, ',');
-        istr.ignore(2000, ',');
-        istr >> tempOHIP;
-        istr.ignore(2000, ',');
-        if (istr.peek() != '\n') { // check if the next character is not a newline
-            m_ticket.read(istr); // if it is not, read the Ticket object
-        }
-    }
-    if (&istr == &std::cin) {
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    }
-    if (m_name != nullptr) {
-        delete[] m_name;
-    }
-    m_name = new char[strlen(tempName) + 1];
-    strcpy(m_name, tempName);
-    m_OHIP = tempOHIP;
-    return istr;
-}
+    std::istream& Patient::read(std::istream& is) {
+        delete[] name;
+        name = nullptr;
 
+        if (&is == &std::cin) {
+            std::cout << "Name: ";
+            char tempName[51];
+            is.get(tempName, 51, '\n');
+            is.ignore(10000, '\n');
+            name = new char[strlen(tempName) + 1];
+            strcpy(name, tempName);
+
+            std::cout << "OHIP: ";
+            is >> OHIP;
+            while (is.fail() || OHIP < 100000000 || OHIP > 999999999) {
+                is.clear();
+                is.ignore(10000, '\n');
+                std::cout << "Invalid value entered, retry [100000000 <= value <= 999999999]: ";
+                is >> OHIP;
+            }
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear input buffer
+
+        }
+        else {
+            char tempName[51];
+            is.get(tempName, 51, ',');
+            is.ignore(10000, ',');
+            name = new char[strlen(tempName) + 1];
+            strcpy(name, tempName);
+
+            is >> OHIP;
+            is.ignore(1, ',');
+
+            ticket.read(is);
+        }
+
+        return is;
+    }
 }

@@ -22,13 +22,13 @@ using namespace std;
 namespace seneca {
     class IOAble {
     public:
+        virtual std::ostream& write(std::ostream& os) const = 0;
+        virtual std::istream& read(std::istream& is) = 0;
         virtual ~IOAble() {}
-        virtual ostream& write(ostream& ostr) const = 0;
-        virtual istream& read(istream& istr) = 0;
     };
 
-    ostream& operator<<(ostream& os, const IOAble& io);
-    istream& operator>>(istream& is, IOAble& io);
+    std::ostream& operator<<(std::ostream& os, const IOAble& io);
+    std::istream& operator>>(std::istream& is, IOAble& io);
 }
 
 #endif // SENECA_IOABLE_H_

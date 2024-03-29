@@ -1,16 +1,17 @@
-#ifndef TESTPATIENT_H
-#define TESTPATIENT_H
+#ifndef SENECA_TESTPATIENT_H_
+#define SENECA_TESTPATIENT_H_
 
 #include "Patient.h"
 
 namespace seneca {
     class TestPatient : public Patient {
     public:
-        TestPatient(int ticketNumber = 0);
+        TestPatient();
+
         virtual char type() const override;
-        virtual std::ostream& write(std::ostream& ostr) const override;
-        virtual std::istream& read(std::istream& istr) override;
+        virtual std::ostream& write(std::ostream& os) const override;
+        virtual std::istream& read(std::istream& is) override;
     };
 }
 
-#endif // TESTPATIENT_H
+#endif // SENECA_TESTPATIENT_H_
