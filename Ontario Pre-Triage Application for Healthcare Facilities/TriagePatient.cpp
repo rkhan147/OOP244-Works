@@ -1,3 +1,18 @@
+/* Citation and Sources...
+Final Project Milestone 4
+Module: TriagePatient
+Filename: TriagePatient.cpp
+Version 1.0
+Author   Ridwan Khan
+Revision History
+-----------------------------------------------------------
+Date      Reason
+2024/03/30  Preliminary release
+2023/?/?  Debugged DMA
+-----------------------------------------------------------
+I have done all the coding by myself and only copied the code
+that my professor provided to complete my workshops and assignments.
+-----------------------------------------------------------*/
 #define _CRT_SECURE_NO_WARNINGS
 #include "TriagePatient.h"
 #include <cstring>
@@ -60,7 +75,7 @@ namespace seneca {
         Patient::read(istr);
         if (&istr != &std::cin) {
             char tempSymptoms[512];
-            istr.ignore(); // Ignore the comma
+            istr.ignore();
             istr.get(tempSymptoms, 512, '\n');
             m_symptoms = new char[strlen(tempSymptoms) + 1];
             strcpy(m_symptoms, tempSymptoms);

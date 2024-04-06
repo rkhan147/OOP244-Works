@@ -13,15 +13,15 @@
 #define SENECA_UTILS_H_
 #include <iostream>
 namespace seneca {
+    template <typename type>
+    void removeDynamicElement(type* array[], int index, int& size) {
+        delete array[index];
+        for (int j = index; j < size; j++) {
+            array[j] = array[j + 1];
+        }
+        size--;
+    }
    class Utils {
-       template <typename type>
-       void removeDynamicElement(type* array[], int index, int& size) {
-           delete array[index];
-           for (int j = index; j < size; j++) {
-               array[j] = array[j + 1];
-           }
-           size--;
-       }
 
       /// <summary>
       /// Start point for the simulated time

@@ -155,10 +155,13 @@
     <None Include="ClassDiagram.cd" />
     <None Include="ms3.csv" />
     <None Include="ms3out.csv" />
+    <None Include="smalldata.csv" />
+    <None Include="smalldata.csv.bak" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt" />
     <Text Include="ms51_correct_output.txt" />
+    <Text Include="reflect.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

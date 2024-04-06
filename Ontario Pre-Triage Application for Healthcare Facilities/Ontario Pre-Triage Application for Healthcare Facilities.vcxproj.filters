@@ -91,12 +91,21 @@
     <None Include="ClassDiagram.cd">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="smalldata.csv.bak">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="smalldata.csv">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt">
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="ms51_correct_output.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="reflect.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
