@@ -1,0 +1,20 @@
+In completing this workshop, I deepened my understanding of object-oriented programming concepts, 
+particularly inheritance and polymorphism. By creating the LibraryItem class and its derived class 
+Book, I gained practical experience in applying the rule of three to manage dynamically allocated 
+resources properly.
+
+Implementing the constructors, destructor, and assignment operators for both the base and derived 
+classes reinforced the importance of memory management and resource cleanup to prevent memory leaks 
+and undefined behavior.
+
+Furthermore, working with virtual functions and operator overloading in the display and operator> 
+methods of the LibraryItem and Book classes showcased the power of polymorphism and how it enables 
+code reuse and extensibility.
+
+Throughout the workshop, I encountered challenges such as understanding the nuances of virtual 
+functions and properly implementing the rule of three. However, by carefully reviewing the course 
+notes and experimenting with different approaches, I was able to overcome these challenges and 
+solidify my understanding of the material.
+
+Overall, this workshop was instrumental in enhancing my proficiency in object-oriented design 
+principles and their practical application in C++.
