@@ -1,0 +1,23 @@
+Learnings:
+Working on the "General Healthcare Facility Pre-Triage Application" project has been an 
+enriching experience, particularly in terms of consolidating my understanding of C++ 
+object-oriented programming. One of the key learnings was the integration of various 
+concepts such as classes, inheritance, and dynamic memory management to create a cohesive 
+application. Additionally, implementing the load and save functionalities enhanced my 
+understanding of file handling in C++, allowing me to store and retrieve data efficiently.
+
+Challenges:
+One of the significant challenges I encountered during the development of the application 
+was managing the dynamic memory allocation for the patient lineup. Ensuring proper 
+allocation and deallocation of memory while handling various patient types required 
+careful attention to avoid memory leaks or segmentation faults. Additionally, 
+understanding and implementing the logic for calculating and updating the average wait 
+times posed a challenge initially. However, through thorough testing and debugging, I was 
+able to overcome these challenges and ensure the correctness and robustness of the application.
+
+Overall, this project provided valuable insights into software development practices, 
+including design considerations, implementation strategies, and debugging techniques. It 
+not only reinforced my understanding of C++ programming but also equipped me with practical 
+skills that are applicable in real-world scenarios. Through this experience, I've gained 
+confidence in my ability to tackle complex projects and deliver solutions that meet the 
+desired specifications.

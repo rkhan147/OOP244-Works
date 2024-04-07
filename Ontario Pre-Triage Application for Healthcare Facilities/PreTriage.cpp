@@ -193,10 +193,11 @@ namespace seneca {
             std::cout << "Lineup is empty!" << std::endl;
             return;
         }
+        Time currentTime;
         std::cout << std::endl;
         std::cout << "******************************************" << std::endl;
-        std::cout << "Calling for at ";
-        std::cout << *m_lineup[index];
+        std::cout << "Call time: [" << currentTime.reset() << "]" << std::endl;
+        std::cout << "Calling at for " << *m_lineup[index];
         std::cout << "******************************************" << std::endl << std::endl;
         setAverageWaitTime(*m_lineup[index]);
         removeDynamicElement(m_lineup, index, m_lineupSize);
