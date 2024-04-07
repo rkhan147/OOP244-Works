@@ -19,6 +19,7 @@ that my professor provided to complete my workshops and assignments.
 #include "TestPatient.h"
 #include "TriagePatient.h"
 #include "Utils.h"
+#include <iomanip>
 #include <fstream>
 #include <cstring>
 #include <string>
@@ -150,7 +151,7 @@ namespace seneca {
             std::cout << "Line up full!" << std::endl;
             return;
         }
-        Menu menu("Select Type of Registration:\n1- Contagion Test\n2- Triage\n0- Exit", 3);
+        Menu menu("Select Type of Registration:\n1- Contagion Test\n2- Triage\n0- Exit", 1);
         int selection;
         menu >> selection;
         if (selection == 1) {
@@ -174,7 +175,7 @@ namespace seneca {
     }
 
     void PreTriage::admit() {
-        Menu menu("Select Type of Admittance:\n1- Contagion Test\n2- Triage\n0- Exit", 3);
+        Menu menu("Select Type of Admittance:\n1- Contagion Test\n2- Triage\n", 1);
         int selection;
         menu >> selection;
         char type;
@@ -194,7 +195,7 @@ namespace seneca {
         }
         std::cout << std::endl;
         std::cout << "******************************************" << std::endl;
-        std::cout << "Calling for ";
+        std::cout << "Calling for at ";
         std::cout << *m_lineup[index];
         std::cout << "******************************************" << std::endl << std::endl;
         setAverageWaitTime(*m_lineup[index]);
@@ -207,6 +208,41 @@ namespace seneca {
         }
     }
 
+    void PreTriage::lineup() {
+        Menu menu("Select The Lineup:\n1- Contagion Test\n2- Triage\n", 1);
+        int selection;
+        menu >> selection;
+        char type;
+        if (selection == 1) {
+            type = 'C';
+        }
+        else if (selection == 2) {
+            type = 'T';
+        }
+        else {
+            return;
+        }
+        std::cout << "Row - Patient name                                          OHIP     Tk #  Time" << std::endl;
+        std::cout << "-------------------------------------------------------------------------------" << std::endl;
+        int count = 1;
+        for (int i = 0; i < m_lineupSize; ++i) {
+            if (*m_lineup[i] == type) {
+                std::cout << count << "   - ";
+                std::stringstream sstream;
+                m_lineup[i]->write(sstream);
+                std::string line, name, OHIP, ticketNumber, time;
+                std::getline(sstream, line, ',');
+                std::getline(sstream, name, ',');
+                std::getline(sstream, OHIP, ',');
+                std::getline(sstream, ticketNumber, ',');
+                std::getline(sstream, time, ',');
+                std::cout << std::left << std::setfill('.') << std::setw(53) << name << OHIP;
+                std::cout << "   " << ticketNumber << " " << time << std::endl;
+                count++;
+            }
+        }
+        std::cout << "-------------------------------------------------------------------------------" << std::endl;
+    }
 
     void PreTriage::run() {
         Menu menu("General Healthcare Facility Pre-Triage Application\n1- Register\n2- Admit\n3- View Lineup\n", 0);
@@ -218,6 +254,9 @@ namespace seneca {
             }
             else if (selection == 2) {
                 admit();
+            }
+            else if (selection == 3) {
+                lineup();
             }
             else {
                 break;
