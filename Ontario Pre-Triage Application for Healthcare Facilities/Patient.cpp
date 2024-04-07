@@ -17,6 +17,7 @@ that my professor provided to complete my workshops and assignments.
 #include "Patient.h"
 #include <cstring>
 #include <iomanip>
+#include <limits>
 
 namespace seneca {
 
@@ -101,6 +102,8 @@ namespace seneca {
         char tempName[51];
         int tempOHIP;
         if (&istr == &std::cin) {
+            std::cin.clear();
+            istr.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::cout << "Name: ";
             istr.get(tempName, 51);
             istr.ignore(1000, '\n');

@@ -140,7 +140,6 @@
   <ItemGroup>
     <ClCompile Include="IOAble.cpp" />
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="ms53_test.cpp" />
     <ClCompile Include="Patient.cpp" />
     <ClCompile Include="PreTriage.cpp" />
     <ClCompile Include="TestPatient.cpp" />
@@ -160,6 +159,12 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="input.txt" />
+    <Text Include="ms51_correct_output.txt" />
+    <Text Include="ms52_correct_output.txt" />
+    <Text Include="ms53_correct_output.txt" />
+    <Text Include="ms54_correct_output.txt" />
+    <Text Include="ms55_correct_output.txt" />
+    <Text Include="ms56_correct_output.txt" />
     <Text Include="reflect.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

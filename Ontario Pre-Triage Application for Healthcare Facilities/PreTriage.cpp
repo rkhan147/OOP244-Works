@@ -69,6 +69,11 @@ namespace seneca {
             m_averTriageWait.read(ss2);
 
             while (std::getline(file, line)) {
+                if (m_lineupSize >= maxNoOfPatients) {
+                    std::cout << "Warning: number of records exceeded 100" << std::endl;
+                    break;
+                }
+
                 if (line[0] == 'C') {
                     m_lineup[m_lineupSize] = new TestPatient();
                 }
@@ -91,6 +96,7 @@ namespace seneca {
             std::cout << count << " Records imported...\n" << std::endl;
         }
     }
+
 
     void PreTriage::save() {
         std::cout << "Saving lineup..." << std::endl;
@@ -126,7 +132,7 @@ namespace seneca {
     void PreTriage::setAverageWaitTime(const Patient& p) {
         int PTN = p.number();
         Time PTT = p.time();
-        Time CT = Time();  // Assuming Time() returns the current time
+        Time CT = CT.reset();  // Assuming Time() returns the current time
         Time AWT = p.type() == 'C' ? m_averCovidWait : m_averTriageWait;
         AWT = ((CT - PTT) + (AWT * (PTN - 1))) / PTN;
         if (p.type() == 'C') {
@@ -151,27 +157,29 @@ namespace seneca {
             std::cout << "Line up full!" << std::endl;
             return;
         }
-        Menu menu("Select Type of Registration:\n1- Contagion Test\n2- Triage\n0- Exit", 1);
+        Menu menu("Select Type of Registration:\n1- Contagion Test\n2- Triage\n", 1);
         int selection;
         menu >> selection;
-        if (selection == 1) {
+        switch (selection) {
+        case 1:
             m_lineup[m_lineupSize] = new TestPatient();
-        }
-        else if (selection == 2) {
+            break;
+        case 2:
             m_lineup[m_lineupSize] = new TriagePatient();
-        }
-        else {
+            break;
+        default:
             return;
         }
-        m_lineup[m_lineupSize]->setArrivalTime();
-        std::cout << "Please enter patient information: ";
-        std::cin >> *m_lineup[m_lineupSize];
-        std::cout << std::endl;
-        std::cout << "******************************************" << std::endl;
-        std::cout << *m_lineup[m_lineupSize];
-        std::cout << "Estimated Wait Time: " << getWaitTime(*m_lineup[m_lineupSize]) << std::endl;
-        std::cout << "******************************************" << std::endl << std::endl;
-        ++m_lineupSize;
+        if (m_lineup[m_lineupSize]) {
+            std::cout << "Please enter patient information: \n";
+            m_lineup[m_lineupSize]->setArrivalTime();
+            m_lineup[m_lineupSize]->read(std::cin);
+            std::cout << "\n******************************************" << std::endl;
+            m_lineup[m_lineupSize]->write(std::cout);
+            std::cout << "Estimated Wait Time: " << getWaitTime(*m_lineup[m_lineupSize]) << std::endl;
+            std::cout << "******************************************\n\n";
+            m_lineupSize++;
+        }
     }
 
     void PreTriage::admit() {

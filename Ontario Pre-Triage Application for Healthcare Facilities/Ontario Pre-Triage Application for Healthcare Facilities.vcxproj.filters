@@ -71,9 +71,6 @@
     <ClCompile Include="PreTriage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ms53_test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ms3.csv">
@@ -103,6 +100,24 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="reflect.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="ms56_correct_output.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="ms55_correct_output.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="ms54_correct_output.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="ms53_correct_output.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="ms52_correct_output.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="ms51_correct_output.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
